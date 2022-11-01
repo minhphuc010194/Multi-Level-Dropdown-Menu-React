@@ -18,8 +18,8 @@ Then:
 
 ```
 cd react-multilevel-dropdown-menu
-npm install
-npm start
+yarn install
+yarn start
 ```
 
 You should see the app in your browser address bar at [http://localhost:3000](http://localhost:3000)
