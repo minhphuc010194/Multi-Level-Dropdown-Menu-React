@@ -11,7 +11,7 @@ Read the step-by-step guide here: https://blog.logrocket.com/creating-multilevel
 You can download or clone this project by running this command from your terminal:
 
 ```
-git clone https://github.com/Ibaslogic/react-multilevel-dropdown-menu
+git clone https://github.com/minhphuc010194/Multi-Level-Dropdown-Menu-React.git
 ```
 
 Then:
