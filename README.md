@@ -1,4 +1,4 @@
-# Creating a multilevel dropdown menu in React
+# Creating a multilevel dropdown menu with React Chakra UI
 
 Read the step-by-step guide here: https://blog.logrocket.com/creating-multilevel-dropdown-menu-react/
 
