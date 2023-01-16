@@ -1,12 +1,11 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
-import { Box } from "@chakra-ui/react";
+import { Box, Link } from "@chakra-ui/react";
 import Dropdown from "./Dropdown";
+import { RANGE } from "utils";
 
 const MenuItems = ({ items, depthLevel }) => {
    const [dropdown, setDropdown] = useState(false);
-
-   let ref = useRef();
+   const ref = useRef();
 
    useEffect(() => {
       const handler = (event) => {
@@ -24,11 +23,11 @@ const MenuItems = ({ items, depthLevel }) => {
    }, [dropdown]);
 
    const onMouseEnter = () => {
-      window.innerWidth > 960 && setDropdown(true);
+      window.innerWidth > RANGE && setDropdown(true);
    };
 
    const onMouseLeave = () => {
-      window.innerWidth > 960 && setDropdown(false);
+      window.innerWidth > RANGE && setDropdown(false);
    };
 
    const closeDropdown = () => {
@@ -43,61 +42,23 @@ const MenuItems = ({ items, depthLevel }) => {
          onMouseEnter={onMouseEnter}
          onMouseLeave={onMouseLeave}
          onClick={closeDropdown}
-         px={2}
+         px={13}
       >
          {items.url && items.submenu ? (
             <>
-               <Box
-                  as="button"
-                  display="flex"
-                  alignItems="center"
-                  color="inherit"
-                  fontSize="inherit"
-                  border="none"
-                  backgroundColor="transparent"
-                  cursor="pointer"
-                  width="100%"
-                  onClick={() => setDropdown((prev) => !prev)}
-                  _hover={{
-                     bg: "#f2f2f2",
-                  }}
-
-                  // aria-haspopup="menu"
-                  // aria-expanded={dropdown ? "true" : "false"}
-               >
-                  {window.innerWidth < 960 && depthLevel === 0 ? (
+               <Box _hover={{ bg: "gray.300" }}>
+                  {window.innerWidth < RANGE && depthLevel === 0 ? (
                      items.title
                   ) : (
-                     <Link
-                        to={items.url}
-                        style={{
-                           display: "block",
-                           fontSize: "inherit",
-                           color: "inherit",
-                           textDecoration: "none",
-                        }}
-                     >
-                        {items.title}
-                     </Link>
+                     <Link to={items.url}>{items.title}</Link>
                   )}
 
                   {depthLevel > 0 &&
-                  window.innerWidth < 960 ? null : depthLevel > 0 &&
-                    window.innerWidth > 960 ? (
+                  window.innerWidth < RANGE ? null : depthLevel > 0 &&
+                    window.innerWidth > RANGE ? (
                      <span>&raquo;</span>
                   ) : (
-                     <Box
-                        as="span"
-                        _after={{
-                           content: `""`,
-                           display: "inline-block",
-                           marginLeft: "0.28em",
-                           verticalAlign: "0.09em",
-                           borderTop: "0.42em solid",
-                           borderRight: "0.32em solid transparent",
-                           borderLeft: "0.32em solid transparent",
-                        }}
-                     />
+                     <Box />
                   )}
                </Box>
                <Dropdown
@@ -109,21 +70,15 @@ const MenuItems = ({ items, depthLevel }) => {
          ) : !items.url && items.submenu ? (
             <>
                <Box
-                  as="button"
-                  display="flex"
                   alignItems="center"
-                  color="inherit"
-                  fontSize="inherit"
                   border="none"
                   backgroundColor="transparent"
                   cursor="pointer"
                   width="100%"
                   _hover={{
-                     bg: "#f2f2f2",
+                     bg: "gray.300",
                   }}
                   onClick={() => setDropdown((prev) => !prev)}
-                  // aria-expanded={dropdown ? "true" : "false"}
-                  // aria-haspopup="menu"
                >
                   {items.title}{" "}
                   {depthLevel > 0 ? (
@@ -151,12 +106,14 @@ const MenuItems = ({ items, depthLevel }) => {
             </>
          ) : (
             <Link
-               to={items.url}
-               style={{
-                  display: "block",
-                  fontSize: "inherit",
-                  color: "inherit",
-                  textDecoration: "none",
+               href={items.url}
+               display="block"
+               fontSize="inherit"
+               color="inherit"
+               textDecoration="none"
+               cursor="pointer"
+               _hover={{
+                  bg: "gray.300",
                }}
             >
                {items.title}
